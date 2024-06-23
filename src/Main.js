@@ -23,7 +23,13 @@ function Main() {
 }
 function AppBar() {
   const getUsers = async () => {
-    const datac = await axios.get("http://localhost:8080/api/v1/employees/");
+    const datac = await axios.get("http://localhost:8080/api/v1/employees/", {
+      headers: {
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
     console.log(datac);
     setBook(datac.data);
   };
