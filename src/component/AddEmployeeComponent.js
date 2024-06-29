@@ -9,13 +9,25 @@ function AddEmployee() {
   const navigate = useNavigate();
   const { id } = useParams();
   const employeeId = Number(id);
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+  };
   function saveEmployee(e) {
     e.preventDefault();
     const employee = { firstName, secondName, email };
-    if (id) {
+    console.log(`employee id  ${employeeId}`);
+    if (employeeId) {
+      console.log(`sequence`);
       const users = async () => {
         axios
-          .post(`http://localhost:8080/api/v1/employees/${id}`, employee)
+          .post(
+            `http://localhost:8080/api/v1/employees/${id}`,
+            employee,
+            config
+          )
           .then((response) => {
             console.log(response);
           })
@@ -28,7 +40,7 @@ function AddEmployee() {
       console.log("axios error");
       const users = async () => {
         axios
-          .post("http://localhost:8080/api/v1/employees", employee)
+          .post("http://localhost:8080/api/v1/employees/", employee)
           .then((response) => {
             console.log(response);
           })

@@ -22,14 +22,10 @@ function Main() {
   );
 }
 function AppBar() {
+  const baseUrl = "https://backend-production-efac.up.railway.app";
+  const baseUrl1 = "http://localhost:8080";
   const getUsers = async () => {
-    const datac = await axios.get("http://localhost:8080/api/v1/employees/", {
-      headers: {
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
+    const datac = await axios.get(`${baseUrl1}/api/v1/employees/`);
     console.log(datac);
     setBook(datac.data);
   };
