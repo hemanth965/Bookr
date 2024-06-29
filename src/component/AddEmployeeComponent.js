@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function AddEmployee() {
+  const host = "https://empowering-wholeness-production.up.railway.app";
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,11 +24,7 @@ function AddEmployee() {
       console.log(`sequence`);
       const users = async () => {
         axios
-          .post(
-            `http://localhost:8080/api/v1/employees/${id}`,
-            employee,
-            config
-          )
+          .post(`${host}/api/v1/employees/${id}`, employee, config)
           .then((response) => {
             console.log(response);
           })
@@ -40,7 +37,7 @@ function AddEmployee() {
       console.log("axios error");
       const users = async () => {
         axios
-          .post("http://localhost:8080/api/v1/employees/", employee)
+          .post(`${host}/api/v1/employees/`, employee)
           .then((response) => {
             console.log(response);
           })
@@ -59,7 +56,7 @@ function AddEmployee() {
     if (id) {
       const users = async () => {
         const data = await axios
-          .get(`http://localhost:8080/api/v1/employees/${id}`)
+          .get(`${host}/api/v1/employees/${id}`)
           .then((response) => {
             setFirstName(response.data.firstName);
             setSecondName(response.data.secondName);

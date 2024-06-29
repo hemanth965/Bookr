@@ -10,9 +10,10 @@ function Book({ item }) {
     navigate(`/AddEmployeeComponent/${id}`);
   }
   function deleteEmployee(id) {
+    const host = "https://empowering-wholeness-production.up.railway.app";
     const users = async () => {
       axios
-        .delete(`http://localhost:8080/api/v1/employees/${id}`)
+        .delete(`${host}/api/v1/employees/${id}`)
         .then((response) => {
           console.log("it is in the deleteEmployee");
         })
